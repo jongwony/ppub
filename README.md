@@ -28,3 +28,5 @@ Markdown image file example
 cd <GIT PROJECT>
 ppub
 ```
+
+[![asciicast](https://asciinema.org/a/UHv5eLtSDZu9hOJsbsBEMAph8.png)](https://asciinema.org/a/UHv5eLtSDZu9hOJsbsBEMAph8)
