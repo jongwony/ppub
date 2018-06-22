@@ -22,6 +22,7 @@ img_pattern = re.compile(r'(!\[.*?\])\((.*)\)')
 project_path = os.path.abspath('.')
 download_path = get_path('Downloads', home=True)
 scr_path = sh_stdout('defaults read com.apple.screencapture location')
+sub_name = None
 
 os.chdir(project_path)
 try:
@@ -37,9 +38,10 @@ for s in grep_md_image:
     mod_files.append(target_file)
     line = int(line) - 1
 
+    target_dir = 'images' + ('/' + sub_name if sub_name else '')
     filename = img_pattern.search(string).group(2)
     src = get_path(scr_path, filename)
-    dst = get_path(project_path, 'images', filename)
+    dst = get_path(project_path, target_dir, filename)
 
     if os.path.exists(get_path(scr_path, filename)):
         copy2(src, dst)
@@ -47,7 +49,7 @@ for s in grep_md_image:
         with open(target_file) as r:
             data = r.readlines()
 
-        data[line] = img_pattern.sub(r'\1(images/\2)\n', string)
+        data[line] = img_pattern.sub(r'\1({}/\2)\n'.format(target_dir, string))
         print(string, '->', data[line])
 
         with open(target_file, 'w') as w:
