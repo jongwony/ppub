@@ -16,6 +16,8 @@ export PATH=$HOME/bin:$PATH
 
 Markdown image file example
 
+*Rendering file must be staged at least*
+
 ```
 # cmd + shift + 3 or 4 [take screen shot default directory]
 # cmd + c in finder
